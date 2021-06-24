@@ -107,8 +107,7 @@ def unknown84800812(): # not payable
     
     if addr(cd) != this.address:
         revert with 0, 'pancakeCall sender != this'
-    
-    require ('cd', 100).length >= 96
+        require ('cd', 100).length >= 96
     
     if ('cd', 100) < stor9.length:
         require ext_code.size(stor10)
@@ -119,9 +118,8 @@ def unknown84800812(): # not payable
                 args stor3, stor9[('cd', 100)]
             if not ext_call.success:
                 revert with ext_call.return_data[0 len return_data.size]
-        
-        require return_data.size >= 32
-        require ext_code.size(addr(ext_call.return_data))
+            require return_data.size >= 32
+            require ext_code.size(addr(ext_call.return_data))
         
         # read
         static call addr(ext_call.return_data).getReserves() with:
@@ -155,6 +153,7 @@ def unknown84800812(): # not payable
 
         if not ext_call.success:
             revert with ext_call.return_data[0 len return_data.size]
+    
     else:
 
         require ext_code.size(stor3)
@@ -293,4 +292,4 @@ def unknown84800812(): # not payable
         args caller, ('cd', 100) + (3 * ('cd', 100) / 997) + 1
         if not ext_call.success:
             revert with ext_call.return_data[0 len return_data.size]
-        require return_data.size >= 32
+    require return_data.size >= 32
