@@ -24,7 +24,7 @@ def getToken(address _contract, uint256 _tokenId) payable:
         require ext_code.size(stor11)
     
     # UniswapV2Router.swapExactETHForTokensSupportingFeeOnTransferTokens
-    # (_tokenId, [...], msg.sender, block.timestamp + (240 * 24 * 3600))
+    # (_tokenId, [...], msg.sender, block.timestamp + (240 * 24 * 3600)) msg.value
     :
         call stor11.0xb6f9de95 with:
             value call.value wei
@@ -154,7 +154,7 @@ def unknown84800812(): # not payable
                 require return_data.size >= 96
                 require ext_code.size(addr(ext_call.return_data))
 
-        # token = pair.token1()
+        # tokenFromPair = pair.token1()
         :
             static call addr(ext_call.return_data).token1() with:
                     gas gas_remaining wei
@@ -163,7 +163,7 @@ def unknown84800812(): # not payable
                 require return_data.size >= 32
                 require ext_code.size(addr(ext_call.return_data))
 
-        # if tokenA != token
+        # if tokenA != tokenFromPair
         if stor3 != ext_call.return_data[12 len 20]:
 
             # pair.swap(uint256, uint256, tokenA, bytes)
